@@ -54,7 +54,7 @@ App.config(function ($routeProvider,$provide,$httpProvider) {
 	    },
 	    complete: function(response) {
 	    	if(response.status === 401){
-				window.location.href = "/cenfoteca/#/login";
+	    		window.location.href = "/cenfoteca/#/login";
 			}
 	    }
 	});

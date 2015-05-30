@@ -13,11 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.mangofactory.swagger.plugin.EnableSwagger;
-
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.cenfotec.cenfoteca"})
-@EnableSwagger
 @EnableAutoConfiguration
 
 @EnableJpaRepositories("com.cenfotec.cenfoteca.repositories")
