@@ -6,11 +6,10 @@ import java.util.List;
 
 
 /**
- * The persistent class for the tipo_alquiler database table.
+ * The persistent class for the TipoAlquiler database table.
  * 
  */
 @Entity
-@Table(name="tipo_alquiler")
 @NamedQuery(name="TipoAlquiler.findAll", query="SELECT t FROM TipoAlquiler t")
 public class TipoAlquiler implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +18,7 @@ public class TipoAlquiler implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idTipoAlquiler;
 
-	private String tipo;
+	private String name;
 
 	//bi-directional many-to-one association to Alquiler
 	@OneToMany(mappedBy="tipoAlquiler")
@@ -36,12 +35,12 @@ public class TipoAlquiler implements Serializable {
 		this.idTipoAlquiler = idTipoAlquiler;
 	}
 
-	public String getTipo() {
-		return this.tipo;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Alquiler> getAlquilers() {

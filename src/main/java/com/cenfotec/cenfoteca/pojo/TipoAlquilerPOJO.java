@@ -3,7 +3,7 @@ package com.cenfotec.cenfoteca.pojo;
 public class TipoAlquilerPOJO{
 	
 	private int idTipoAlquiler;
-	private String tipo;
+	private String name;
 
 	public TipoAlquilerPOJO() {
 		super();
@@ -18,12 +18,11 @@ public class TipoAlquilerPOJO{
 		this.idTipoAlquiler = idTipoAlquiler;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getName() {
+		return name;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
 }

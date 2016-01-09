@@ -1,10 +1,13 @@
 package com.cenfotec.cenfoteca.services;
 
+import javax.servlet.http.HttpSession;
+
 import com.cenfotec.cenfoteca.contracts.LoginRequest;
+import com.cenfotec.cenfoteca.contracts.LoginResponse;
 import com.cenfotec.cenfoteca.ejb.Usuario;
 
 public interface LoginServiceInterface {
 
-	Usuario checkUser(LoginRequest lr);
+	public void checkUser(LoginRequest lr, LoginResponse response, HttpSession currentSession);
 
 }

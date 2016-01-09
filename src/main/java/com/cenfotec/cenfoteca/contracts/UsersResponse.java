@@ -10,7 +10,6 @@ public class UsersResponse extends BaseResponse{
 
 	public UsersResponse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public List<UsuarioPOJO> getUsuarios() {

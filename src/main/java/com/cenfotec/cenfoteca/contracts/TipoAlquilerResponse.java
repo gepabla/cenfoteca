@@ -10,7 +10,6 @@ public class TipoAlquilerResponse extends BaseResponse{
 
 	public TipoAlquilerResponse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public List<TipoAlquilerPOJO> getTipoAlquilerList() {

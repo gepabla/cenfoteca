@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the usuario database table.
+ * The persistent class for the Usuario database table.
  * 
  */
 @Entity
@@ -26,20 +26,15 @@ public class Usuario implements Serializable {
 
 	private String password;
 
-	//bi-directional many-to-one association to TipoUsuario
-	@ManyToOne
-	@JoinColumn(name="tipo_usuario_idTipoUsuario")
-	private TipoUsuario tipoUsuario;
-
 	//bi-directional many-to-many association to Alquiler
 	@ManyToMany
 	@JoinTable(
-		name="usuario_has_alquiler"
+		name="UsuarioHasAlquiler"
 		, joinColumns={
-			@JoinColumn(name="usuario_idUsuario")
+			@JoinColumn(name="Usuario_idUsuario")
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="alquiler_idAlquiler")
+			@JoinColumn(name="Alquiler_idAlquiler")
 			}
 		)
 	private List<Alquiler> alquilers;
@@ -85,14 +80,6 @@ public class Usuario implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public TipoUsuario getTipoUsuario() {
-		return this.tipoUsuario;
-	}
-
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
 	}
 
 	public List<Alquiler> getAlquilers() {

@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * The persistent class for the alquiler database table.
+ * The persistent class for the Alquiler database table.
  * 
  */
 @Entity
@@ -18,7 +18,6 @@ public class Alquiler implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idAlquiler;
 
-	@Lob
 	private String description;
 
 	private String image;
@@ -27,7 +26,6 @@ public class Alquiler implements Serializable {
 
 	//bi-directional many-to-one association to TipoAlquiler
 	@ManyToOne
-	@JoinColumn(name="tipo_alquiler_idTipoAlquiler")
 	private TipoAlquiler tipoAlquiler;
 
 	//bi-directional many-to-many association to Usuario

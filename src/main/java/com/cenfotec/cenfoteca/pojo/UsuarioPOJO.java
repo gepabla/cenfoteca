@@ -1,5 +1,7 @@
 package com.cenfotec.cenfoteca.pojo;
 
+import java.util.List;
+
 public class UsuarioPOJO{
 	
 	private int idUsuario;
@@ -7,7 +9,8 @@ public class UsuarioPOJO{
 	private String lastname;
 	private String email;
 	private String password;
-	private Integer idTipoUsuario;
+	
+	private List<AlquilerPOJO> alquileres;
 	
 	public UsuarioPOJO() {
 		super();
@@ -54,11 +57,11 @@ public class UsuarioPOJO{
 		this.password = password;
 	}
 
-	public Integer getIdTipoUsuario() {
-		return idTipoUsuario;
+	public List<AlquilerPOJO> getAlquileres() {
+		return alquileres;
 	}
 
-	public void setIdTipoUsuario(Integer idTipoUsuario) {
-		this.idTipoUsuario = idTipoUsuario;
+	public void setAlquileres(List<AlquilerPOJO> alquileres) {
+		this.alquileres = alquileres;
 	}
 }

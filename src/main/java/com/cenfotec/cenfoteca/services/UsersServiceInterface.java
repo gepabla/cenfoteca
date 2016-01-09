@@ -1,16 +1,14 @@
 package com.cenfotec.cenfoteca.services;
 
-import org.springframework.data.domain.Page;
+import java.util.List;
 
 import com.cenfotec.cenfoteca.contracts.UsersRequest;
-import com.cenfotec.cenfoteca.ejb.Usuario;
+import com.cenfotec.cenfoteca.pojo.UsuarioPOJO;
 
 public interface UsersServiceInterface {
 
-	Page<Usuario> getAll(UsersRequest ur);
-
-	Boolean saveUser(Usuario user);
-
-	Usuario getSessionUser(int idUser);
-
+	List<UsuarioPOJO> getAll(UsersRequest ur);
+	List<UsuarioPOJO> getAllByName(UsersRequest ur);
+	Boolean saveUser(UsersRequest ur);
+	List<UsuarioPOJO> getAlquileres(UsersRequest ur);
 }

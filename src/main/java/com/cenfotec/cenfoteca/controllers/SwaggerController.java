@@ -20,9 +20,7 @@ public class SwaggerController {
 	@RequestMapping(value= {"/swagger"},method = RequestMethod.GET)
     public ModelAndView root() {
     	
-		//prints
 		log.info("Getting swagger root view");    	
-    	//prints
     	
 		ModelAndView mv = new ModelAndView("swagger/home");
 		log.info("Root view is ok!");

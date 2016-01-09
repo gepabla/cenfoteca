@@ -1,34 +1,46 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 
-<!doctype html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Proyecto 3 | To Do List</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="resources/bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="resources/bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="resources/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/bower_components/angular-ui-grid/ui-grid.min.css">
+  <link rel="stylesheet" href="resources/app.css">
+  <script src="resources/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-<html xmlns:ng="http://angularjs.org" class="ng-app:Cenfoteca" id="ng-app" ng-app="Cenfoteca">
-	<head>
-	    <meta charset="utf-8">
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<link rel="SHORTCUT ICON" href="resources/images/favicon.ico" type="image/x-icon" />
-	    <c:import url="/WEB-INF/views/css.jsp"></c:import>		   	    
-	    
-	    <!--[if lte IE 8]>
-	    	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
-			<script src="resources/js/ie-shiv.js"></script>
-			<script src="resources/js/json3.min.js"></script>
-		<![endif]-->
-		
-		<c:import url="/WEB-INF/views/javascript.jsp"></c:import>
-		
-	</head>
-	
-	<body>
-		
-		<c:import url="/WEB-INF/views/header.jsp"></c:import>
-		
-		<div id="wrapper">
-		    <div ng-view class="generalContainer container"></div>
-		</div>
-		<c:import url="/WEB-INF/views/footer.jsp"></c:import>
-	</body>
-	
-	
+  <div ng-view></div>
+  <div class="container"><div>version <strong><span app-version></span></strong></div></div>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="resources/bower_components/angular/angular.js"></script>
+  <script src="resources/bower_components/angular-route/angular-route.js"></script>
+  <script src="resources/bower_components/angular-ui-grid/ui-grid.min.js"></script>
+  <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
+  <script src="resources/non_bower_components/angular-file-upload.min.js"></script>
+  <script src="resources/app.js"></script>
+  <script src="resources/view1/view1.js"></script>
+  <script src="resources/view2/view2.js"></script>
+  <script src="resources/components/version/version.js"></script>
+  <script src="resources/components/version/version-directive.js"></script>
+  <script src="resources/components/version/interpolate-filter.js"></script>
+</body>
 </html>

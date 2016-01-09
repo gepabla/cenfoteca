@@ -7,6 +7,7 @@
 	<name>cenfoteca</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -18,7 +19,7 @@
 		<thymeleaf.version>2.1.3.RELEASE</thymeleaf.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>cenfoteca.CenfotecApplication</start-class>
-		<java.version>1.8</java.version>		
+		<java.version>1.8</java.version>	
 	</properties>
 
 	<dependencies>
@@ -90,7 +91,16 @@
     		<groupId>mysql</groupId>
     		<artifactId>mysql-connector-java</artifactId>
   		</dependency>
-  		
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-cypher-compiler-2.1</artifactId>
+			<version>2.1.5</version>
+		</dependency>
 	</dependencies>
 			
 	<build>

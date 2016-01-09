@@ -2,7 +2,7 @@ package com.cenfotec.cenfoteca.contracts;
 
 import com.cenfotec.cenfoteca.pojo.UsuarioPOJO;
 
-public class UsersRequest extends BasePagingRequest {
+public class UsersRequest extends BaseRequest {
 	
 	private UsuarioPOJO user;
 	
