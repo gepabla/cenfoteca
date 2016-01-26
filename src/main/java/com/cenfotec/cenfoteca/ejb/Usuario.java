@@ -25,6 +25,8 @@ public class Usuario implements Serializable {
 	private String lastname;
 
 	private String password;
+	
+	private TipoUsuario tipoUsuario;
 
 	//bi-directional many-to-many association to Alquiler
 	@ManyToMany
@@ -88,6 +90,10 @@ public class Usuario implements Serializable {
 
 	public void setAlquilers(List<Alquiler> alquilers) {
 		this.alquilers = alquilers;
+	}
+	
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 }

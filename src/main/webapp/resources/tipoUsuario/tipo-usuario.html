@@ -1,0 +1,29 @@
+<div class="container">
+    <h3 class="text-center">Crear Tipo Usuario</h3>
+    <hr>
+</div>
+
+<div class="container">
+	<form id="createTipoUsuarioForm" name="createTipoUsuarioForm" class="form-horizontal" role="form">
+	
+		<div class='form-group'>
+			<div ng-class="{error: onError && createTipoUsuarioForm.tipo.$invalid}">
+				<label class='col-sm-3 control-label'>Name</label>
+				<div class="col-sm-8">
+					<input type="text" id="tio" class="form-control"
+						tipo="tipo" placeholder="Required" required
+						ng-model="requestObject.tipo" 
+					/> 
+					<span
+						ng-show="onError && ccreateTipoUsuarioForm.tipo.$error.required"
+						class="help-inline">Required
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		<button class="btn btn-primary" ng-click="saveRent($event)">Create</button>
+		<!-- clear button todo -->
+		
+	</form>
+</div>
