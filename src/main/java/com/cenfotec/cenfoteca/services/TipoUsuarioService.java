@@ -37,9 +37,9 @@ public class TipoUsuarioService implements TipoUsuarioServiceInterface {
 	}
 
 	@Override
-	public Boolean saveTipoUsuario(TipoUsuarioRequest tur) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean saveTipoUsuario(TipoUsuario tipousuario) {
+		TipoUsuario ntipousuario = tipoUsuarioRepository.save(tipousuario);
+		return (ntipousuario == null) ? false : true;
 	}
 
 }

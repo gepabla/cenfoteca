@@ -1,35 +1,51 @@
 package com.cenfotec.cenfoteca.controllers;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cenfotec.cenfoteca.contracts.TipoUsuarioRequest;
 import com.cenfotec.cenfoteca.contracts.TipoUsuarioResponse;
+import com.cenfotec.cenfoteca.ejb.TipoUsuario;
 import com.cenfotec.cenfoteca.services.TipoUsuarioServiceInterface;
 
 @RestController
 @RequestMapping(value ="rest/protected/tipoUsuario")
 public class TipoUsuarioController {
 	
+	@Autowired private ServletContext servletContext;
 	@Autowired private TipoUsuarioServiceInterface tipoUsuarioService;
 	
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
-	public TipoUsuarioResponse create(@RequestBody TipoUsuarioRequest tur){	
+	public TipoUsuarioResponse create(
+			@RequestParam("idTipoUsuario") int idTipoUsuario,
+			@RequestParam("tipo") String tipo){	
 		
-		TipoUsuarioResponse us = new TipoUsuarioResponse();
-		Boolean state = tipoUsuarioService.saveTipoUsuario(tur);
+		TipoUsuarioResponse rs = new TipoUsuarioResponse();
 	
-		if(state){
-			us.setCode(200);
-			us.setCodeMessage("tipo usuario creado exitosamente");
+		if(!tipo.equals("")){
+			
+			TipoUsuario tpUsuario = new TipoUsuario();
+			tpUsuario.setIdTipoUsuario(idTipoUsuario);
+			tpUsuario.setTipo(tipo);
+			
+			Boolean state = tipoUsuarioService.saveTipoUsuario(tpUsuario);
+			
+			if(state){
+				rs.setCode(200);
+				rs.setCodeMessage("Tipo usuario creado exitosamente");
+			}
+			
+		}else{
+			//create a common webservice error codes enum or statics
+			rs.setCode(409);
+			rs.setErrorMessage("create/edit conflict");
 		}
-		return us;	
+	
+		return rs;	
 	}
 	
 	@RequestMapping(value ="/getAll", method = RequestMethod.GET)
