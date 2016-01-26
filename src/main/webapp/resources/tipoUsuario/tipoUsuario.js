@@ -9,56 +9,43 @@ angular.module('myApp.tipoUsuario', ['ngRoute'])
   });
 }])
 
-.controller('TipoUsuarioController', ['$scope','$http', '$location', '$upload',function($scope,$http,$location,$upload) {
+.controller('TipoUsuarioController', ['$scope','$http', function($scope,$http) {
 	
-	$scope.files = {};
 	$scope.onError = false;
-	$scope.tipoUsuarioList = [];
+	$scope.tipoUsuarioList = []; //Lista de tipo usuarios
 	$scope.requestObject = {};
 	
 	$scope.init = function() {
 		$http.get('rest/protected/tipoUsuario/getAll')
 		.success(function(response) {
 			$scope.tipoUsuarioList = response.tipoUsuarioList;
-			$scope.requestObject.idTipoUsuario = $scope.tipoUsuarioList[0].idTipoUsuario;
-			
 		});
 	};
 	
 	$scope.init();
 	
-	$scope.onFileSelect = function($files) {
-    	$scope.files = $files;
-    };
-	
     $scope.saveTipoUsuario = function(event){
     	
-    	if(this.createTipoUsuarioForm.$valid){
-    		$scope.onError = false;
-    		
-    		//$files: an array of files selected, each file has name, size, and type.
-    		for ( var i = 0; i < $scope.files.length; i++) {
-    			var file = $scope.files[i];
-    			$scope.upload = $upload.upload({
-    				url : 'rest/protected/tipoUsuario/create',
-    				data : {
-    					idTipoUsuario:$scope.requestObject.idTipoUsuario,
-    					tipo:$scope.requestObject.tipo
-    				},
-    				file : file,
-    			}).progress(
-					function(evt) {
-						console.log('percent: '+ parseInt(100.0 * evt.loaded / evt.total));
-					}).success(function(data, status, headers, config) {
-						// Rent is uploaded successfully
-						console.log(data);
-					});
-	    			//.error(...)
-	    			//.then(success, error, progress); 
+    	var _id = 0;
+    	var data = {};
+    	//El for es para incrementar el idTipousuario a la hora de enviarlo a la BD
+    	for(var i=0; i < $scope.tipoUsuarioList.length; i++) {
+    		if(i == $scope.tipoUsuarioList.length - 1) {
+    			_id = $scope.tipoUsuarioList[i].idTipoUsuario + 1;
     		}
-    	}else{
-    		$scope.onError = true;
     	}
+    	//Objeto JSON que lleva el idTipoUsuario y el tipo
+    	data = {
+    			idTipoUsuario : _id,
+    			tipo : $scope.requestObject.tipo
+    	};
+    	
+    	$http.post('rest/protected/tipoUsuario/create', data)
+    	.success(function(data, status, headers, config) {
+            $scope.message = data;
+          }).error(function(data, status, headers, config) {
+            alert( "failure message: " + JSON.stringify({data: data}));
+          }); 
     };
 	
 }]);

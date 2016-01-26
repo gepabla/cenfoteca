@@ -95,5 +95,9 @@ public class Usuario implements Serializable {
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
+	
+	public TipoUsuario getTipoUsuario() {
+		return this.tipoUsuario;
+	}
 
 }

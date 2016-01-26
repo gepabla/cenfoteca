@@ -1,7 +1,5 @@
 package com.cenfotec.cenfoteca.controllers;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +14,6 @@ import com.cenfotec.cenfoteca.services.TipoUsuarioServiceInterface;
 @RequestMapping(value ="rest/protected/tipoUsuario")
 public class TipoUsuarioController {
 	
-	@Autowired private ServletContext servletContext;
 	@Autowired private TipoUsuarioServiceInterface tipoUsuarioService;
 	
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
