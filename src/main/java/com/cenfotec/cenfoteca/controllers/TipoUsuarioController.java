@@ -1,25 +1,36 @@
 package com.cenfotec.cenfoteca.controllers;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cenfotec.cenfoteca.contracts.TipoAlquilerResponse;
+import com.cenfotec.cenfoteca.contracts.TipoUsuarioRequest;
 import com.cenfotec.cenfoteca.contracts.TipoUsuarioResponse;
-import com.cenfotec.cenfoteca.services.TipoAlquilerServiceInterface;
 import com.cenfotec.cenfoteca.services.TipoUsuarioServiceInterface;
-import com.cenfotec.cenfoteca.services.UsersServiceInterface;
 
 @RestController
 @RequestMapping(value ="rest/protected/tipoUsuario")
 public class TipoUsuarioController {
 	
-	@Autowired private UsersServiceInterface usersService;
 	@Autowired private TipoUsuarioServiceInterface tipoUsuarioService;
-	@Autowired private HttpServletRequest request;
+	
+	@RequestMapping(value ="/create", method = RequestMethod.POST)
+	public TipoUsuarioResponse create(@RequestBody TipoUsuarioRequest tur){	
+		
+		TipoUsuarioResponse us = new TipoUsuarioResponse();
+		Boolean state = tipoUsuarioService.saveTipoUsuario(tur);
+	
+		if(state){
+			us.setCode(200);
+			us.setCodeMessage("tipo usuario creado exitosamente");
+		}
+		return us;	
+	}
 	
 	@RequestMapping(value ="/getAll", method = RequestMethod.GET)
 	public TipoUsuarioResponse getAll(){	

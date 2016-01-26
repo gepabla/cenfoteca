@@ -9,30 +9,41 @@ angular.module('myApp.tipoUsuario', ['ngRoute'])
   });
 }])
 
-.controller('TipoUsuarioController', ['$scope','$http',function($scope,$http) {
-	$scope.tipoUsuarios = [];
-	$scope.requestObject = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};
-	//$http.post('/rest/protected/tipoUsuario/getAll',$scope.requestObject).success(function(response) {
-		//console.log("response",response)
-		//$scope.tipoUsuarios = response.tipoUsuarios;
-		//console.log("$scope.usuarios",$scope.usuarios)
-		
-	//});
+.controller('TipoUsuarioController', ['$scope','$http', '$location', '$upload',function($scope,$http,$location,$upload) {
 	
-    $scope.saveRent = function(event){
+	$scope.files = {};
+	$scope.onError = false;
+	$scope.tipoUsuarioList = [];
+	$scope.requestObject = {};
+	
+	$scope.init = function() {
+		$http.get('rest/protected/tipoUsuario/getAll')
+		.success(function(response) {
+			$scope.tipoUsuarioList = response.tipoUsuarioList;
+			$scope.requestObject.idTipoUsuario = $scope.tipoUsuarioList[0].idTipoUsuario;
+			
+		});
+	};
+	
+	$scope.init();
+	
+	$scope.onFileSelect = function($files) {
+    	$scope.files = $files;
+    };
+	
+    $scope.saveTipoUsuario = function(event){
     	
-    	if(this.createRentForm.$valid){
+    	if(this.createTipoUsuarioForm.$valid){
     		$scope.onError = false;
     		
     		//$files: an array of files selected, each file has name, size, and type.
     		for ( var i = 0; i < $scope.files.length; i++) {
     			var file = $scope.files[i];
     			$scope.upload = $upload.upload({
-    				url : 'rest/protected/rent/create',
+    				url : 'rest/protected/tipoUsuario/create',
     				data : {
-    					idTipoAlquiler:$scope.requestObject.idTipoAlquiler,
-    					name:$scope.requestObject.name,
-    					description:$scope.requestObject.description,
+    					idTipoUsuario:$scope.requestObject.idTipoUsuario,
+    					tipo:$scope.requestObject.tipo
     				},
     				file : file,
     			}).progress(

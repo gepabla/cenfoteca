@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cenfotec.cenfoteca.contracts.TipoUsuarioRequest;
 import com.cenfotec.cenfoteca.ejb.TipoUsuario;
 import com.cenfotec.cenfoteca.pojo.TipoUsuarioPOJO;
 import com.cenfotec.cenfoteca.repositories.TipoUsuarioRepository;
@@ -36,7 +37,7 @@ public class TipoUsuarioService implements TipoUsuarioServiceInterface {
 	}
 
 	@Override
-	public Boolean saveTipoUsuario(TipoUsuario tipoUsuario) {
+	public Boolean saveTipoUsuario(TipoUsuarioRequest tur) {
 		// TODO Auto-generated method stub
 		return null;
 	}
