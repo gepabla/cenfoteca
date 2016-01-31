@@ -12,7 +12,6 @@ import com.cenfotec.cenfoteca.contracts.TipoUsuarioRequest;
 import com.cenfotec.cenfoteca.ejb.TipoUsuario;
 import com.cenfotec.cenfoteca.pojo.TipoUsuarioPOJO;
 import com.cenfotec.cenfoteca.repositories.TipoUsuarioRepository;
-import com.cenfotec.cenfoteca.services.TipoUsuarioServiceInterface;
 
 @Service
 public class TipoUsuarioService implements TipoUsuarioServiceInterface {
@@ -37,9 +36,14 @@ public class TipoUsuarioService implements TipoUsuarioServiceInterface {
 	}
 
 	@Override
-	public Boolean saveTipoUsuario(TipoUsuario tipousuario) {
-		TipoUsuario ntipousuario = tipoUsuarioRepository.save(tipousuario);
-		return (ntipousuario == null) ? false : true;
+	@Transactional
+	public Boolean saveTipoUsuario(TipoUsuario tUsuario) {
+		
+		BeanUtils.copyProperties(tUsuario.getTipo(), tUsuario);
+		
+		TipoUsuario nTUsuario = tipoUsuarioRepository.save(tUsuario);
+		
+		return (nTUsuario == null) ? false : true;
 	}
 
 }

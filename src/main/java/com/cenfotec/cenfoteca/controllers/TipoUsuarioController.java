@@ -1,9 +1,9 @@
 package com.cenfotec.cenfoteca.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cenfotec.cenfoteca.contracts.TipoUsuarioResponse;
@@ -17,32 +17,17 @@ public class TipoUsuarioController {
 	@Autowired private TipoUsuarioServiceInterface tipoUsuarioService;
 	
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
-	public TipoUsuarioResponse create(
-			@RequestParam("idTipoUsuario") int idTipoUsuario,
-			@RequestParam("tipo") String tipo){	
+	public TipoUsuarioResponse create(@RequestBody TipoUsuario tUsuario){	
 		
-		TipoUsuarioResponse rs = new TipoUsuarioResponse();
-	
-		if(!tipo.equals("")){
-			
-			TipoUsuario tpUsuario = new TipoUsuario();
-			tpUsuario.setIdTipoUsuario(idTipoUsuario);
-			tpUsuario.setTipo(tipo);
-			
-			Boolean state = tipoUsuarioService.saveTipoUsuario(tpUsuario);
-			
-			if(state){
-				rs.setCode(200);
-				rs.setCodeMessage("Tipo usuario creado exitosamente");
-			}
-			
-		}else{
-			//create a common webservice error codes enum or statics
-			rs.setCode(409);
-			rs.setErrorMessage("create/edit conflict");
+		TipoUsuarioResponse tResp = new TipoUsuarioResponse();
+		Boolean state = tipoUsuarioService.saveTipoUsuario(tUsuario);
+		
+		if(state){
+			tResp.setCode(200);
+			tResp.setCodeMessage("Tipo created succesfully");
 		}
+		return tResp;
 	
-		return rs;	
 	}
 	
 	@RequestMapping(value ="/getAll", method = RequestMethod.GET)
@@ -50,7 +35,7 @@ public class TipoUsuarioController {
 			
 		TipoUsuarioResponse response = new TipoUsuarioResponse();
 		response.setCode(200);
-		response.setCodeMessage("users fetch success");
+		response.setCodeMessage("Tipo fetch success");
 		response.setTipoUsuarioList(tipoUsuarioService.getAll());
 		return response;		
 	}
